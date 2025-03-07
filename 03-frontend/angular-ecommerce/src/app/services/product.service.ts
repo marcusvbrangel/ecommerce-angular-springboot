@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class ProductService {
 
-  private readonly BASE_URL = 'http://localhost:8085/api/products';
+  private readonly BASE_URL = 'http://localhost:8085/api/products?size=200';
 
   constructor(private httpClient: HttpClient) { }
 

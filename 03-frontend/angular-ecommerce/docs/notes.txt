@@ -1,4 +1,10 @@
 
+========================================
+  77
+========================================
+
+
+
 
 ng version
 
@@ -53,7 +59,9 @@ www.luv2code.com/ecommerce-release-2.0-starter-files
 
 
 
+npm install bootstrap@5.2.0
 
+npm install @fortawesome/fontawesome-free
 
 
 
