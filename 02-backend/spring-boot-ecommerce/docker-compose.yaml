@@ -1,0 +1,36 @@
+
+services:
+
+  postgres-spring-ecommerce:
+    image: postgres:14
+    container_name: postgres-spring-ecommerce
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: spring-ecommerce
+    ports:
+      - "5432:5432"
+    volumes:
+      - spring-ecommerce-data:/var/lib/postgresql/data
+    networks:
+      - spring-ecommerce-network
+
+  pgadmin-spring-ecommerce:
+    image: dpage/pgadmin4:9.1
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: 1234
+    ports:
+      - "8099:80"
+    depends_on:
+      - postgres-spring-ecommerce
+    networks:
+      - spring-ecommerce-network
+
+volumes:
+  spring-ecommerce-data:
+
+networks:
+  spring-ecommerce-network:
+    driver: bridge

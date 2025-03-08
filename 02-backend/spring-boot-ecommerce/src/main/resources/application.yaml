@@ -1,22 +1,51 @@
 server:
   port: 8085
+#  ssl:
+#    key-store-type: PKCS12
+#    key-store: classpath:certificate.p12
+#    key-store-password: 1234
 
 spring:
   application:
     name: spring-boot-ecommerce
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/full-stack-ecommerce?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: root
+    url: jdbc:postgresql://localhost:5432/spring-ecommerce
+    driver-class-name: org.postgresql.Driver
+    username: admin
     password: 1234
+  sql:
+    init:
+      mode: never
   jpa:
+    show-sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
   data:
     rest:
       base-path: /api
 
+
+
+#server:
+#  port: 8085
+#
+#spring:
+#  application:
+#    name: spring-boot-ecommerce
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/full-stack-ecommerce?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&serverTimezone=UTC
+#    username: root
+#    password: 1234
+#  jpa:
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#  data:
+#    rest:
+#      base-path: /api
+#
 
 
 #  spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver

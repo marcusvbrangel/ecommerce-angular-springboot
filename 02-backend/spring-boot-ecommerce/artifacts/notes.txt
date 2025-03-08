@@ -1,0 +1,43 @@
+
+
+----------------------------------------------------
+References:
+
+Get Arrays - Spring Boot Microservice with Spring Data Rest
+https://www.youtube.com/watch?v=34QmfGbNrpE
+
+spring.io - docs - Spring Data REST
+https://spring.io/projects/spring-data-rest
+
+
+Redis Cache
+https://docs.spring.io/spring-data/redis/reference/redis/redis-cache.html
+
+Spring Boot Cache with Redis
+https://www.baeldung.com/spring-boot-redis-cache
+
+Turbinando seus Microsserviços com Spring Cache e Redis
+https://dev.to/jordihofc/turbinando-seus-microsservicos-com-spring-cache-e-redis-4p1f
+
+
+----------------------------------------------------
+
+
+
+----------------------------------------------------
+
+
+
+----------------------------------------------------
+
+
+
+----------------------------------------------------
+
+
+
+----------------------------------------------------
+
+
+
+----------------------------------------------------

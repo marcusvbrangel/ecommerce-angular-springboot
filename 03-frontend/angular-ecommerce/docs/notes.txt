@@ -66,6 +66,11 @@ npm install @fortawesome/fontawesome-free
 
 
 
+ng generate class common/product-category
+
+ng generate component components/product-category-menu
+
+
 
 
 
