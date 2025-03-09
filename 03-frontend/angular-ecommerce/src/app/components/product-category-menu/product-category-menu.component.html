@@ -5,9 +5,9 @@
       <li *ngFor="let productCategory of productCategories">
 
         <a routerLink="/category/{{ productCategory.id }}" routerLinkActive="active-link">        
-            {{ productCategory.categoryName }}
+            {{ productCategory.id }} - {{ productCategory.categoryName }}
         </a>
-        
+
       </li>
 
     </ul>

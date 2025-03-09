@@ -4,7 +4,7 @@ import { ProductCategoryMenuComponent } from "./components/product-category-menu
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, ProductCategoryMenuComponent, ProductCategoryMenuComponent],
+  imports: [RouterOutlet, RouterLinkActive, ProductCategoryMenuComponent, ProductCategoryMenuComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
