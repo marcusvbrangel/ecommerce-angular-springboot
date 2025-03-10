@@ -1,4 +1,4 @@
-<div class="main-content">
+<div class="main-content" style="border-style: dashed; border-color: darkorchid;">
 
     <div class="section-content section-content-p30">
 
@@ -9,9 +9,9 @@
                 <!-- loop over the collections of product -->
 
                 <div *ngFor="let product of products" class="col-md-3">
-                    
+
                     <div class="product-box">
-                        
+
                         <img src="{{ product.imageUrl }}" alt="{{ product.name }}" class="img-responsive">
 
                         <h1>{{ product.id}} - {{ product.name }}</h1>
@@ -22,6 +22,10 @@
 
                     </div>
 
+                </div>
+
+                <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                    No product found ...
                 </div>
 
             </div>

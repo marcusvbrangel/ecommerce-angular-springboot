@@ -4,40 +4,45 @@ import { Observable } from 'rxjs';
 import { Product } from '../common/product';
 import { map } from 'rxjs/operators';
 import { ProductCategory } from '../common/product-category';
-  
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private readonly CATEGORIES_URL = 'http://localhost:8085/api/product-categories?projection=productCategoryProjection';
-  // private readonly CATEGORIES_URL = 'http://localhost:8085/api/product-categories/search/findAll?projection=productCategoryProjection';
-  private readonly PRODUCTS_URL = 'http://localhost:8085/api/products/search/findByCategoryId';
-
   constructor(private httpClient: HttpClient) { }
 
   getProductCategories(): Observable<ProductCategory[]> {
-    return this.httpClient.get<GetResponseProductCategory>(this.CATEGORIES_URL)
-      .pipe(map(response => response._embedded.productCategory));
+    return this.httpClient.get<GetResponseProductCategory>('http://localhost:8085/api/product-categories?projection=productCategoryProjection')
+      .pipe(map(response => response._embedded.productCategories));
   }
 
-  getProductList(categoryId: number): Observable<Product[]> {   
-    const searchUrl = `${this.PRODUCTS_URL}?id=${categoryId}&projection=productCatalogProjection`;
-    return this.httpClient.get<GetResponseProductCatalog>(searchUrl)
-      .pipe(map(response => response._embedded.product));
+  getProductList(categoryId: number): Observable<Product[]> {
+    const searchUrl = `http://localhost:8085/api/products/search/findByCategoryId?id=${categoryId}&projection=productCatalogProjection`;
+    return this.getProducts(searchUrl);
   }
 
+  searchProducts(theKeywork: string): Observable<Product[]> {
+    const searchUrl = `http://localhost:8085/api/products/search/findByNameContainingIgnoreCase?name=${theKeywork}&projection=productCatalogProjection`;
+    return this.getProducts(searchUrl);
+  }
+
+  private getProducts(searchUrl: string) {
+    return this.httpClient.get<GetResponseProductCatalog>(searchUrl).pipe(
+      map(response => response._embedded.products)
+    );
+  }
 }
 
 interface GetResponseProductCatalog {
   _embedded: {
-    product: Product[];
+    products: Product[];
   }
 }
 
 interface GetResponseProductCategory {
   _embedded: {
-    productCategory: ProductCategory[];
+    productCategories: ProductCategory[];
   }
 }
 

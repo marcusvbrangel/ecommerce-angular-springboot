@@ -10,7 +10,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin("http://localhost:4200")
-@RepositoryRestResource(collectionResourceRel = "product",
+@RepositoryRestResource(collectionResourceRel = "products",
         path = "products", excerptProjection = ProductCatalogProjection.class)
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
@@ -21,5 +21,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // http://localhost:8085/api/products/search/findByCategoryId?id=2&projection=productCatalog
 //    @RestResource(path = "/products", rel = "products")
     Page<Product> findByCategoryId(@Param("id") Long id, Pageable pageable);
+
+    // http://localhost:8085/api/products/search/findByNameContainingIgnoreCase?name=Python
+    Page<Product> findByNameContainingIgnoreCase(@Param("name") String name, Pageable pageable);
+
+
 
 }
