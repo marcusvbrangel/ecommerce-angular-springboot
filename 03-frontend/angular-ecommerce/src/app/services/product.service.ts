@@ -27,11 +27,17 @@ export class ProductService {
     return this.getProducts(searchUrl);
   }
 
-  private getProducts(searchUrl: string) {
+  getProductDetail(productId: number): Observable<Product> {
+    const produtctUrl = `http://localhost:8085/api/products/${productId}?projection=productCatalog`;
+    return this.httpClient.get<Product>(produtctUrl);
+  }
+
+  private getProducts(searchUrl: string): Observable<Product[]> {
     return this.httpClient.get<GetResponseProductCatalog>(searchUrl).pipe(
       map(response => response._embedded.products)
     );
   }
+
 }
 
 interface GetResponseProductCatalog {

@@ -14,7 +14,7 @@ ng version
   / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
  /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
                 |___/
-    
+
 
 Angular CLI: 19.2.0
 Node: 22.1.0
@@ -71,6 +71,18 @@ ng generate class common/product-category
 ng generate component components/product-category-menu
 
 ng generate component components/search
+
+
+ng generate component components/product-details
+
+
+
+
+https://angular.io/guide/language-service
+
+https://ng-bootstrap.github.io
+
+
 
 
 

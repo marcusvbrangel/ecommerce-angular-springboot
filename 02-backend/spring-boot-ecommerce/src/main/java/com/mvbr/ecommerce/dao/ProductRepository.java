@@ -27,4 +27,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 
 
+    // http://localhost:8085/api/products/2?projection=productCatalog
+
 }
