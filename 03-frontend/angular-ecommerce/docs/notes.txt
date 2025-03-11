@@ -86,6 +86,41 @@ https://ng-bootstrap.github.io
 
 
 
+---------------------------------------------
+
+http://localhost:8085/api/products?page=0&size=10
+
+page": {
+    "size": 10,
+    "totalElements": 100,
+    "totalPages": 10,
+    "number": 0
+  }
+
+---------------------------------------------
+
+
+
+ng add @angular/localize
+
+npm install @ng-bootstrap/ng-bootstrap
+
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+imports: [
+  ng-bootstrap
+]
+
+
+---------------------------------------------
+
+
+
+
+
+
+
 
 
 

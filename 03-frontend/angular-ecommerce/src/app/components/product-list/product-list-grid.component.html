@@ -34,6 +34,63 @@
 
       </div>
 
+
+      <!--  pagination begin  -->
+
+      <div class="footer-pagination" style="border-style: dashed; border-color: darkorchid;">
+
+        <div class="row">
+
+          <div class="col-md-6"></div>
+
+          <div class="col-md-6">
+
+            <div class="row">
+
+              <div class="col-md-9" style="padding-left: 30%">
+
+                <ngb-pagination [(page)]="thePageNumber"
+                                [pageSize]="thePageSize"
+                                [collectionSize]="theTotalElements"
+                                [maxSize]="5"
+                                [boundaryLinks]="true"
+                                (pageChange)="listProducts()">
+
+                </ngb-pagination>
+
+              </div>
+
+              <div class="col-md-3 mt-2" style="text-align: right">
+
+                <span class="mr-2">Page Size</span>
+
+                <select #myPageSelect (change)="updatePageSize(myPageSelect.value)">
+                  <option>2</option>
+                  <option selected="true">5</option>
+                  <option>10</option>
+                  <option>20</option>
+                  <option>50</option>
+                </select>
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+      <!--  pagination end  -->
+
+
+
+
     </div>
 
   </div>

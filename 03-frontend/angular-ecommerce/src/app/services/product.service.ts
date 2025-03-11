@@ -22,9 +22,23 @@ export class ProductService {
     return this.getProducts(searchUrl);
   }
 
-  searchProducts(theKeywork: string): Observable<Product[]> {
-    const searchUrl = `http://localhost:8085/api/products/search/findByNameContainingIgnoreCase?name=${theKeywork}&projection=productCatalogProjection`;
+  getProductListPaginated(thePage: number,
+                          thePageSize: number,
+                          categoryId: number): Observable<GetResponseProductCatalog> {
+    const searchUrl = `http://localhost:8085/api/products/search/findByCategoryId?page=${thePage}&size=${thePageSize}&id=${categoryId}&projection=productCatalogProjection`;
+    return this.httpClient.get<GetResponseProductCatalog>(searchUrl);
+  }
+
+  searchProducts(theKeyword: string): Observable<Product[]> {
+    const searchUrl = `http://localhost:8085/api/products/search/findByNameContainingIgnoreCase?name=${theKeyword}&projection=productCatalogProjection`;
     return this.getProducts(searchUrl);
+  }
+
+  searchProductsPaginated(thePage: number,
+                          thePageSize: number,
+                          theKeyword: string): Observable<GetResponseProductCatalog> {
+    const searchUrl = `http://localhost:8085/api/products/search/findByNameContainingIgnoreCase?name=${theKeyword}&page=${thePage}&size=${thePageSize}&projection=productCatalogProjection`;
+    return this.httpClient.get<GetResponseProductCatalog>(searchUrl);
   }
 
   getProductDetail(productId: number): Observable<Product> {
@@ -41,9 +55,17 @@ export class ProductService {
 }
 
 interface GetResponseProductCatalog {
+
   _embedded: {
     products: Product[];
+  },
+  page: {
+    size: number,
+    totalElements: number,
+    totalPages: number,
+    number: number
   }
+
 }
 
 interface GetResponseProductCategory {
@@ -51,6 +73,15 @@ interface GetResponseProductCategory {
     productCategories: ProductCategory[];
   }
 }
+
+
+
+
+
+
+
+
+
 
 
 
