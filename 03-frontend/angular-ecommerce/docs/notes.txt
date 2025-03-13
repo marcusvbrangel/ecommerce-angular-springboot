@@ -115,6 +115,13 @@ imports: [
 
 ---------------------------------------------
 
+ng generate component components/cart-status
+
+ng generate class common/cart-item
+
+ng generate service services/cart
+
+
 
 
 
