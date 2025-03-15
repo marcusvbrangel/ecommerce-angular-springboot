@@ -4,9 +4,9 @@
 
     <div class="total">
 
-      $45.98
+      {{ totalPrice | currency: 'USD' }}
 
-      <span>2</span>
+      <span>{{ totalQuantity }}</span>
 
       <i class="fa fa-shopping-cart" aria-haspopup="true"></i>
 
