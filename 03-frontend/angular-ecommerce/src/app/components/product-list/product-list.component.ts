@@ -29,7 +29,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
-              private cartService: CartService) {}
+              private cartService: CartService) {
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -87,18 +88,18 @@ export class ProductListComponent implements OnInit {
 
     this.previousKeyword = theKeyword;
 
-    this.productService.searchProductsPaginated(this.thePageNumber -1,
-                                                this.thePageSize,
-                                                theKeyword).subscribe(this.processResult());
+    this.productService.searchProductsPaginated(this.thePageNumber - 1,
+      this.thePageSize,
+      theKeyword).subscribe(this.processResult());
 
   }
 
   private processResult() {
     return (data: any) => {
       this.products = data._embedded.products;
-      this.thePageNumber = data.page.thePageNumber + 1;
       this.thePageSize = data.page.size;
       this.theTotalElements = data.page.totalElements;
+      this.thePageNumber = data.page.number + 1;
     };
   }
 
