@@ -24,6 +24,12 @@ export class CartService {
       this.cartItems = [...this.cartItems, theCartItem];
     }
 
+    this.computeCartTotals();
+
+  }
+
+  computeCartTotals() {
+
     const totalQuantityValue: number = this.cartItems.reduce((total, item) => total + item.quantity, 0);
     const totalPriceValue = this.cartItems.reduce((total, item) => total + (item.unitPrice * item.quantity), 0);
 
@@ -91,6 +97,7 @@ export class CartService {
     --------------------------------------------------------------------*/
 
   }
+
 
 }
 

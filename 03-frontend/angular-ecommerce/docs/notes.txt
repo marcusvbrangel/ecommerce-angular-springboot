@@ -125,6 +125,15 @@ ng generate class common/cart-item
 
 ng generate service services/cart
 
+---------------------------------------------
+
+ng generate component components/cart-details
+
+
+
+---------------------------------------------
+
+
 
 
 
