@@ -44,12 +44,11 @@ export class CartService {
 
     item.quantity--;
 
-    if (item.quantity == 0) {
+    if (item.quantity === 0) {
       this.remove(item);
     }
-    else {
-      this.computeCartTotals();
-    }
+
+    this.computeCartTotals();
 
   }
 
