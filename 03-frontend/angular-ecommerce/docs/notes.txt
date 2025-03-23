@@ -135,6 +135,11 @@ ng generate component components/cart-details
 
 ng generate component components/checkout
 
+---------------------------------------------
+
+ng generate service services/checkout
+
+
 
 
 
