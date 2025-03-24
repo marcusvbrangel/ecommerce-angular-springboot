@@ -28,6 +28,14 @@ services:
     networks:
       - spring-ecommerce-network
 
+  redis-spring-ecommerce:
+    image: redis:7
+    container_name: redis-spring-ecommerce
+    ports:
+      - "6379:6379"
+    networks:
+      - spring-ecommerce-network
+
 volumes:
   spring-ecommerce-data:
 

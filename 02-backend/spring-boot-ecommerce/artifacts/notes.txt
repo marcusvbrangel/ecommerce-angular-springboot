@@ -22,6 +22,70 @@ https://dev.to/jordihofc/turbinando-seus-microsservicos-com-spring-cache-e-redis
 
 ----------------------------------------------------
 
+REDIS
+
+
+# redis-cli
+
+root@7a818d6bf303:/data# redis-cli
+127.0.0.1:6379> set myKey "bom dia"
+OK
+
+127.0.0.1:6379> get myKey
+"bom dia"
+
+
+
+
+
+Basic Redis commands:
+
+
+SET: Set a value for a key.
+
+
+SET mykey "Hello, Redis!"
+GET: Get the value of a key.
+
+
+GET mykey
+DEL: Delete a key.
+
+
+DEL mykey
+EXISTS: Check if a key exists.
+
+
+EXISTS mykey
+KEYS: List all keys matching a pattern.
+
+
+KEYS *
+INCR: Increment the value of a key.
+
+
+INCR mycounter
+LPUSH: Push a value onto a list.
+
+
+LPUSH mylist "value"
+LRANGE: Get a range of values from a list.
+
+
+LRANGE mylist 0 -1
+HSET: Set a field in a hash.
+
+
+HSET myhash field "value"
+HGET: Get a field from a hash.
+
+
+HGET myhash field
+HGETALL: Get all fields and values from a hash.
+
+
+HGETALL myhash
+
 
 
 ----------------------------------------------------
