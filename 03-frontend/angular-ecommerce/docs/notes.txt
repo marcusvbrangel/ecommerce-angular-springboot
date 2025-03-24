@@ -141,6 +141,12 @@ ng generate service services/checkout
 
 ---------------------------------------------
 
+ng generate class common/country
+
+ng generate class common/state
+
+ng generate service services/country-state
+
 
 
 
