@@ -147,6 +147,9 @@ ng generate class common/state
 
 ng generate service services/country-state
 
+---------------------------------------------
+
+ng generate class validators/custom-form-validators
 
 
 
