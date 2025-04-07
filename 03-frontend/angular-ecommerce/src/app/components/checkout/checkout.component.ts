@@ -6,6 +6,7 @@ import {CountryStateService} from '../../services/country-state.service';
 import {Country} from '../../common/country';
 import {State} from '../../common/state';
 import {CustomFormValidators} from '../../validators/custom-form-validators';
+import {CartService} from '../../services/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -15,8 +16,9 @@ import {CustomFormValidators} from '../../validators/custom-form-validators';
 })
 export class CheckoutComponent implements OnInit {
 
-  checkoutService = inject(CheckoutService);
-  countryStateService = inject(CountryStateService);
+  private checkoutService = inject(CheckoutService);
+  private countryStateService = inject(CountryStateService);
+  private cartService = inject(CartService);
 
   formBuilder = inject(FormBuilder);
 
@@ -44,6 +46,8 @@ export class CheckoutComponent implements OnInit {
     this.loadCreditCardYear();
 
     this.loadCountries();
+
+    this.reviewCartDetails();
 
   }
 
@@ -171,7 +175,7 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  handleMonthsAndYear() {
+  loadMonthsAndYear() {
 
     const creditCardFormGroup = this.checkoutFormGroup.get('creditCard');
 
@@ -204,7 +208,7 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  getStates(formGroupName: string) {
+  loadStates(formGroupName: string) {
 
     const formGroup = this.checkoutFormGroup.get(formGroupName);
 
@@ -234,6 +238,17 @@ export class CheckoutComponent implements OnInit {
 
   }
 
+  private reviewCartDetails() {
+
+    this.cartService.totalQuantity.subscribe(
+      data => this.totalQuantity = data,
+    );
+
+    this.cartService.totalPrice.subscribe(
+      data => this.totalPrice = data
+    );
+
+  }
 
 
 }
