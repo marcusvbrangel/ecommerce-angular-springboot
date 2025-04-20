@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ecommerce-backend-configmap
+  namespace: ecommerce-ns
+data:
+  SPRING_PROFILES_ACTIVE: "prod"
+  POSTGRES_DNS: "ecommerce-postgres-service"
+  POSTGRES_DB: "spring-ecommerce-prod"
+  POSTGRES_USER: "admin"
+  POSTGRES_PASSWORD: "1234"

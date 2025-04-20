@@ -90,6 +90,134 @@ HGETALL myhash
 
 ----------------------------------------------------
 
+docker image build marcusvbrangel/ecommerce-backend:1.0.0 .
+
+docker buildx build -t marcusvbrangel/ecommerce-backend:1.0.6 .
+
+
+
+docker image ls | grep ecommerce-backend
+
+
+docker image push marcusvbrangel/ecommerce-backend:1.0.6
+
+
+
+
+
+
+
+----------------------------------------------------
+
+
+kubectl config set-context --current --namespace=ecommerce-ns
+
+kubectl exec -it ecommerce-backend-deployment-8d7775597-gj66j -- bash
+
+
+
+spring profiles active
+SPRING_PROFILES_ACTIVE
+
+
+
+ip addr show
+
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: enp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether d0:94:66:a0:e6:a2 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.9/24 brd 192.168.1.255 scope global dynamic noprefixroute enp2s0
+       valid_lft 9751sec preferred_lft 9751sec
+
+
+O IP da sua máquina local que pode ser usado para comunicação com o Kubernetes é o
+endereço associado à interface de rede enp2s0, que é 192.168.1.9.
+
+
+192.168.1.9
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://<IP_DA_SUA_MAQUINA>:5432/spring-ecommerce
+
+
+
+kubectl exec -it <nome-do-pod> -- bash
+apt-get update && apt-get install -y postgresql-client
+psql -h <IP_DA_SUA_MAQUINA> -U <usuario> -d <nome-do-banco>
+
+
+
+k get service
+
+        NAME                        TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+        ecommerce-backend-service   ClusterIP   10.96.96.192   <none>        8096/TCP   10s
+
+
+
+minikube tunnel
+
+        [sudo] senha para wolf:
+        Status:
+            machine: base-cluster
+            pid: 2338579
+            route: 10.96.0.0/12 -> 192.168.58.2
+            minikube: Running
+            services: [wolfstore-frontend-service]
+            errors:
+                minikube: no errors
+                router: no errors
+                loadbalancer emulator: no errors
+
+
+
+minikube service ecommerce-backend-service --url -n ecommerce-ns
+
+        http://192.168.58.2:31752
+
+
+http://192.168.58.2:31752/api/checkout/ambiente
+http://192.168.58.2:31752/api/products?projection=productCatalog
+http://192.168.58.2:31752/api/products/2?projection=productCatalog
+
+
+
+
+
+----------------------------------------------------
+
+
+kubectl exec -it ecommerce-postgres-deployment-584b7fbf8b-8ssz5 -- bash
+
+psql -U admin -d spring-ecommerce-prod
+
+Listar tabelas no banco de dados:
+
+
+\dt
+Verificar as conexões ativas:
+
+
+\conninfo
+Executar uma consulta SQL (exemplo):
+
+INSERT INTO product (sku, name, description, image_url, active, units_in_stock, unit_price, category_id, date_created)
+VALUES ('XBOXTAG-134657', 'nome do xbox x', 'descrição do xbox x', 'assets/images/products/luggagetags/luggagetag-luv2code-1024.png', TRUE, 72, 4560.32, 4, NOW());
+
+
+SELECT * FROM nome_da_tabela;
+Sair do cliente psql:
+
+
+\q
+
+
 
 
 ----------------------------------------------------
@@ -99,9 +227,3 @@ HGETALL myhash
 ----------------------------------------------------
 
 
-
-----------------------------------------------------
-
-
-
-----------------------------------------------------

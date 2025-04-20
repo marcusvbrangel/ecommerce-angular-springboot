@@ -1,0 +1,13 @@
+server:
+  port: 8085
+
+website:
+  name: Ecommerce for Development
+  environmnt: dev
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring-ecommerce
+    driver-class-name: org.postgresql.Driver
+    username: admin
+    password: 1234

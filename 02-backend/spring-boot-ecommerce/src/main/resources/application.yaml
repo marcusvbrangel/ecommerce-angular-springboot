@@ -1,18 +1,13 @@
-server:
-  port: 8085
-#  ssl:
-#    key-store-type: PKCS12
-#    key-store: classpath:certificate.p12
-#    key-store-password: 1234
-
 spring:
+  profiles:
+    active: dev
   application:
     name: spring-boot-ecommerce
-  datasource:
-    url: jdbc:postgresql://localhost:5432/spring-ecommerce
-    driver-class-name: org.postgresql.Driver
-    username: admin
-    password: 1234
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/spring-ecommerce
+#    driver-class-name: org.postgresql.Driver
+#    username: admin
+#    password: 1234
   sql:
     init:
       mode: never
@@ -21,6 +16,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+    open-in-view: false
   data:
     rest:
       base-path: /api
@@ -28,8 +24,8 @@ spring:
       host: localhost
       port: 6379
 
-  cache:
-    type: redis
+#  cache:
+#    type: redis
 
 logging:
   level:

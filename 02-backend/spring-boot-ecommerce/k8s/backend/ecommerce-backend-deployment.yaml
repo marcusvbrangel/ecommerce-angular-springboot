@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-backend-deployment
+  namespace: ecommerce-ns
+  labels:
+    app: ecommerce-backend-deployment
+    type: backend
+    technology: spring-boot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce-backend-deployment
+      type: backend
+      technology: spring-boot
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      name: ecommerce-backend-deployment
+      labels:
+        app: ecommerce-backend-deployment
+        type: backend
+        technology: spring-boot
+    spec:
+      containers:
+        - name: ecommerce-backend
+          image: marcusvbrangel/ecommerce-backend:1.0.6
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP
+#          env:
+#            - name: SPRING_PROFILES_ACTIVE
+#              value: prod
+          envFrom:
+            - configMapRef:
+                name: ecommerce-backend-configmap
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "0.5"
+            requests:
+              memory: "256Mi"
+              cpu: "0.3"
+          livenessProbe:
+            httpGet:
+              path: /api/checkout/ambiente
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /api/checkout/ambiente
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 2
+            failureThreshold: 3
+          startupProbe:
+            httpGet:
+              path: /api/checkout/ambiente
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+
+
+
+
+
+
+
+
+
+
+
+

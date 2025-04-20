@@ -1,0 +1,29 @@
+## Ignorar arquivos de compilação do Maven
+#target/
+#
+## Ignorar arquivos de configuração do IDE
+#*.iml
+#.idea/
+#*.swp
+#*.swo
+#
+## Ignorar arquivos de controle de versão
+#.git/
+#.gitignore
+#
+## Ignorar arquivos de log
+#*.log
+#
+## Ignorar arquivos temporários do sistema operacional
+#*.tmp
+#*.temp
+#*.bak
+#*.orig
+#*.old
+#
+## Ignorar arquivos de cache
+#.cache/
+#
+#
+## meus artefatos
+#docs/
