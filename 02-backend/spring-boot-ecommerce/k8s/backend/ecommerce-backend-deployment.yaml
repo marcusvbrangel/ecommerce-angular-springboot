@@ -4,14 +4,14 @@ metadata:
   name: ecommerce-backend-deployment
   namespace: ecommerce-ns
   labels:
-    app: ecommerce-backend-deployment
+    app: ecommerce-backend
     type: backend
     technology: spring-boot
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ecommerce-backend-deployment
+      app: ecommerce-backend
       type: backend
       technology: spring-boot
   strategy:
@@ -21,16 +21,29 @@ spec:
       maxUnavailable: 1
   template:
     metadata:
-      name: ecommerce-backend-deployment
+      name: ecommerce-backend-pod
       labels:
-        app: ecommerce-backend-deployment
+        app: ecommerce-backend
         type: backend
         technology: spring-boot
     spec:
+      terminationGracePeriodSeconds: 5
+      securityContext:
+        fsGroup: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000
       containers:
-        - name: ecommerce-backend
-          image: marcusvbrangel/ecommerce-backend:1.0.6
+        - name: ecommerce-backend-container
+          image: marcusvbrangel/ecommerce-backend:1.0.9
           imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            privileged: false
+#            readOnlyRootFilesystem: true
           ports:
             - containerPort: 80
               protocol: TCP
@@ -47,32 +60,32 @@ spec:
             requests:
               memory: "256Mi"
               cpu: "0.3"
-          livenessProbe:
-            httpGet:
-              path: /api/checkout/ambiente
-              port: 80
-            initialDelaySeconds: 10
-            periodSeconds: 10
-            timeoutSeconds: 5
-            failureThreshold: 3
-          readinessProbe:
-            httpGet:
-              path: /api/checkout/ambiente
-              port: 80
-            initialDelaySeconds: 10
-            periodSeconds: 10
-            timeoutSeconds: 5
-            successThreshold: 2
-            failureThreshold: 3
-          startupProbe:
-            httpGet:
-              path: /api/checkout/ambiente
-              port: 80
-            initialDelaySeconds: 10
-            periodSeconds: 10
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 3
+#          livenessProbe:
+#            httpGet:
+#              path: /actuator/health/liveness
+#              port: 80
+#            initialDelaySeconds: 10
+#            periodSeconds: 10
+#            timeoutSeconds: 5
+#            failureThreshold: 3
+#          readinessProbe:
+#            httpGet:
+#              path: /actuator/health/readiness
+#              port: 80
+#            initialDelaySeconds: 10
+#            periodSeconds: 10
+#            timeoutSeconds: 5
+#            successThreshold: 2
+#            failureThreshold: 3
+#          startupProbe:
+#            httpGet:
+#              path: /actuator/health/readiness
+#              port: 80
+#            initialDelaySeconds: 10
+#            periodSeconds: 10
+#            timeoutSeconds: 5
+#            successThreshold: 1
+#            failureThreshold: 3
 
 
 

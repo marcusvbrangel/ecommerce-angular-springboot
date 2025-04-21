@@ -1,11 +1,27 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ecommerce-backend-service
+  name: ecommerce-backend-service-internal
   namespace: ecommerce-ns
 spec:
   selector:
-    app: ecommerce-backend-deployment
+    app: ecommerce-backend
+    type: backend
+    technology: spring-boot
+  ports:
+    - protocol: TCP
+      port: 8096
+      targetPort: 80
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-backend-service-external
+  namespace: ecommerce-ns
+spec:
+  selector:
+    app: ecommerce-backend
     type: backend
     technology: spring-boot
   ports:

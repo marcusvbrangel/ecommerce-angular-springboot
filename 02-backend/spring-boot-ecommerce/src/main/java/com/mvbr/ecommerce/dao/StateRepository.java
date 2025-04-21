@@ -13,7 +13,8 @@ import java.util.List;
 // http://localhost:8085/api/states/2
 // http://localhost:8085/api/states/search/findByCountryCode?code=BR
 
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
+@CrossOrigin("http://192.168.58.2:32445")
 @RepositoryRestResource(collectionResourceRel = "states",
         path = "states", excerptProjection = StateProjection.class)
 public interface StateRepository extends JpaRepository<State, Long> {

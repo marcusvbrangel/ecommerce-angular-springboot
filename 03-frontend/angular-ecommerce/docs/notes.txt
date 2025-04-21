@@ -156,15 +156,75 @@ ng generate class validators/custom-form-validators
 
 
 
-minikube service ecommerce-backend-service -n ecommerce-ns --url
-
-    😿  service ecommerce-ns/ecommerce-backend-service has no node port
-    ❗  Services [ecommerce-ns/ecommerce-backend-service] have type "ClusterIP" not meant to be exposed,
-    however for local development minikube allows you to access this !
 
 
+---------------------------------------------
 
 
+ng build --configuration production
+
+
+docker buildx build -t marcusvbrangel/ecommerce-frontend:0.0.3 .
+
+
+docker image push marcusvbrangel/ecommerce-frontend:0.0.3
+
+
+
+---------------------------------------------
+
+minikube service ecommerce-frontend-service --url -n ecommerce-ns
+
+    http://192.168.58.2:32445
+
+
+---------------------------------------------
+
+
+
+---------------------------------------------
+
+
+
+---------------------------------------------
+
+
+
+---------------------------------------------
+
+
+
+---------------------------------------------
+
+
+
+---------------------------------------------
+
+
+
+---------------------------------------------
+
+
+---------------------------------------------
+
+
+
+---------------------------------------------
+
+
+
+---------------------------------------------
+
+
+
+---------------------------------------------
+
+
+
+---------------------------------------------
+
+
+---------------------------------------------
 
 
 

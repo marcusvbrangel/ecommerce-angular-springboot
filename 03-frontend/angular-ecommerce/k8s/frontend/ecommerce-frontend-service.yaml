@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-frontend-service
+  namespace: ecommerce-ns
+spec:
+  selector:
+    app: ecommerce-frontend
+    type: frontend
+    technology: angular
+  ports:
+    - protocol: TCP
+      port: 8094
+      targetPort: 80
+  type: NodePort

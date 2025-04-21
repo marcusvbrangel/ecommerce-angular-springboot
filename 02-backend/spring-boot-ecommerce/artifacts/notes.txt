@@ -92,14 +92,14 @@ HGETALL myhash
 
 docker image build marcusvbrangel/ecommerce-backend:1.0.0 .
 
-docker buildx build -t marcusvbrangel/ecommerce-backend:1.0.6 .
+docker buildx build -t marcusvbrangel/ecommerce-backend:1.0.7 .
 
 
 
 docker image ls | grep ecommerce-backend
 
 
-docker image push marcusvbrangel/ecommerce-backend:1.0.6
+docker image push marcusvbrangel/ecommerce-backend:1.0.7
 
 
 
@@ -177,14 +177,14 @@ minikube tunnel
 
 
 
-minikube service ecommerce-backend-service --url -n ecommerce-ns
+minikube service eecommerce-backend-service-external --url -n ecommerce-ns
 
-        http://192.168.58.2:31752
+        http://192.168.58.2:30194
 
 
-http://192.168.58.2:31752/api/checkout/ambiente
-http://192.168.58.2:31752/api/products?projection=productCatalog
-http://192.168.58.2:31752/api/products/2?projection=productCatalog
+http://192.168.58.2:30194/api/checkout/ambiente
+http://192.168.58.2:30194/api/products?projection=productCatalog
+http://192.168.58.2:30194/api/products/2?projection=productCatalog
 
 
 
@@ -225,5 +225,81 @@ Sair do cliente psql:
 
 
 ----------------------------------------------------
+
+
+este meu projeto é composto de 3 microserviços: o primeiro microserviço é uma aplicação frontend
+desenvolvida em angular....
+este primeiro microserviço acessa o segundo microserviço de é um backend desenvolvido em spring boot.....
+este segundo microserviço acessa o terceiro microserviço que é um banco de dados postgres
+
+Entendido. Seu projeto é composto por três microserviços com a seguinte arquitetura:
+
+
+Frontend (Angular): Responsável pela interface do usuário, consumindo APIs do backend.
+Backend (Spring Boot): Fornece APIs REST para o frontend e gerencia a lógica de negócios. Ele também se conecta ao banco de dados.
+Banco de Dados (PostgreSQL): Armazena os dados persistentes utilizados pelo backend.
+Essa arquitetura é comum em aplicações modernas e segue boas práticas de separação de responsabilidades. Certifique-se de que:
+
+
+O frontend está configurado para consumir as APIs do backend corretamente (URLs e endpoints).
+O backend está configurado para expor os endpoints necessários e acessar o banco de dados com as credenciais corretas.
+O banco de dados está devidamente configurado e acessível pelo backend.
+
+
+----------------------------------------------------
+
+
+de acordo com o projeto, como deve ser configurada o tipo de porta de cada um dos serviços?
+
+
+De acordo com o projeto e as boas práticas:
+
+
+Frontend (Angular):
+Deve ser configurado como NodePort ou LoadBalancer se precisar ser acessado externamente.
+Exemplo:
+type: NodePort
+
+Backend (Spring Boot):
+Deve ser configurado como ClusterIP, pois será consumido apenas pelo frontend dentro do cluster.
+Exemplo:
+type: ClusterIP
+
+Banco de Dados (PostgreSQL):
+Deve ser configurado como ClusterIP para acesso interno pelo backend.
+Exemplo:
+
+
+
+
+----------------------------------------------------
+
+
+
+
+----------------------------------------------------
+
+
+
+
+----------------------------------------------------
+
+
+
+
+----------------------------------------------------
+
+
+
+
+----------------------------------------------------
+
+
+
+
+----------------------------------------------------
+
+
+
 
 

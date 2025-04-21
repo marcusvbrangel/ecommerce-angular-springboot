@@ -21,22 +21,22 @@ spec:
       maxUnavailable: 1
   template:
     metadata:
-      name: ecommerce-frontend-deployment
+      name: ecommerce-frontend-pod
       labels:
         app: ecommerce-frontend
         type: frontend
         technology: angular
     spec:
       containers:
-        - name: ecommerce-frontend
-          image: marcusvbrangel/ecommerce-frontend:0.0.1
+        - name: ecommerce-frontend-container
+          image: marcusvbrangel/ecommerce-frontend:0.0.5
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
               protocol: TCP
           env:
             - name: BACKEND_HOST
-              value: ecommerce-backend-service
+              value: ecommerce-backend-service-external
 #          resources:
 #            limits:
 #              memory: "128Mi"
