@@ -1,12 +1,22 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
+import {Purchase} from '../common/purchase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckoutService {
 
+  private host = 'localhost:8085';
+  private purchaseUrl = `http://${this.host}/api/checkout/purchase`;
+  private httpClient = inject(HttpClient);
+
   constructor() { }
+
+  placeOrder(purchase: Purchase): Observable<any> {
+    return this.httpClient.post<Purchase>(this.purchaseUrl, purchase);
+  }
 
   getCreditCardMonths(startMonth: number): Observable<number[]> {
 

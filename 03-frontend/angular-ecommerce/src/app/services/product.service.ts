@@ -12,8 +12,8 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // host = 'localhost:8085';
-  host = 'ecommerce-backend-service-external';
+  host = 'localhost:8085';
+  // host = 'ecommerce-backend-service-external';
 
   getProductCategories(): Observable<ProductCategory[]> {
     return this.httpClient.get<GetResponseProductCategory>(`http://${this.host}/api/product-categories?projection=productCategoryProjection`)

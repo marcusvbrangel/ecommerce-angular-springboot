@@ -17,8 +17,8 @@ import java.util.List;
 
 // http://localhost:8085/api/countries/search/findAllCached
 
-//@CrossOrigin("http://localhost:4200")
-@CrossOrigin("http://192.168.58.2:32445")
+@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://192.168.58.2:32445")
 @RepositoryRestResource(collectionResourceRel = "countries",
         path = "countries", excerptProjection = CountryProjection.class)
 public interface CountryRepository extends JpaRepository<Country, Long> {

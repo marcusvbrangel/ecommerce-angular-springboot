@@ -182,6 +182,22 @@ minikube service ecommerce-frontend-service --url -n ecommerce-ns
 
 
 
+ng generate class common/Customer
+
+ng generate class common/Order
+
+ng generate class common/OrderItem
+
+ng generate class common/Address
+
+ng generate class common/Purchase
+
+ng generate service services/Checkout
+
+
+
+
+
 ---------------------------------------------
 
 
